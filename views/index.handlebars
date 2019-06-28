@@ -1,0 +1,89 @@
+<div class="jumbotron-fluid my-4">
+    <div class="container text-white">
+        <div class="row">
+            <h1 class="display-4">Make some Burgers!</h1>
+            <hr class="my-4">
+            <div class="col-md d-flex flex-column align-items-end">
+                <p>Click on a <span class="text-success">conceived</span> Burger to <span class="text-danger">EAT</span> it!</p>
+                <p>Click on an <span class="text-danger">eaten</span> Burger to <span class="text-success">MAKE</span> it!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container text-white">
+    <div class="row">
+        <div class="card order-1 order-md-0 col-md-4 text-center bg-transparent border-0">
+            <div class="card-body">
+                <h2 class="card-title">Burgers You Have conceived...</h2>
+                <h5 class="text-muted">but have not eaten</h5>
+                <!-- list displaying un-eaten burgers-->
+                <ul class="list-group">
+                    {{#each burgers}}
+                    {{#unless isDevoured}}
+                    <li class="list-group-item bg-transparent burger border-0" data-id="{{id}}" data-eaten="{{isDevoured}}">
+                        <div class="card bg-transparent border-0">
+                            <img class="card-image" src="/assets/img/output-onlinepngtools.png">
+                            <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                                <h3 class="card-text">
+                                    {{burger_name}}
+                                </h3>
+                            </div>
+                        </div>
+                    </li>
+                    {{/unless}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="card order-0 order-md-1 col-md-4 bg-transparent border-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="card col-md form-card">
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="burger-name">Enter the name of a burger you wish to DEVOUR!</label>
+                                    <input type="text" class="form-control" id="burger-name">
+                                    <small id='length' class='form-text text-danger'></small>
+                                </div>
+                                <div class="form-group d-flex justify-content-center border-0">
+                                    <button type="submit" class="btn btn-success" id="burger">Make That Burger!</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container-fluid card bg-transparent border-0">
+                        <img class="card-image" id="burger-preview-img" src="/assets/img/output-onlinepngtools.png">
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                            <h3 class="card-text" id="burger-preview">
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card order-2 order-md-2 col-md-4 text-center bg-transparent border-0">
+            <div class="card-body">
+                <h2>Eaten Burgers</h2>
+                <ul class="list-group">
+                    {{#each burgers}}
+                    {{#if isDevoured}}
+                    <li class="list-group-item bg-transparent burger border-0" data-id="{{id}}" data-eaten="{{isDevoured}}">
+                        <div class="card bg-transparent border-0">
+                            <img class="card-image" src="/assets/img/output-onlinepngtools.png">
+                            <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                                <h3 class="card-text">
+                                    {{burger_name}}
+                                </h3>
+                            </div>
+                        </div>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

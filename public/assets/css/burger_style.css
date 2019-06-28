@@ -1,0 +1,40 @@
+#burger-video {
+    z-index: -5;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    min-width: 100%; 
+    min-height: 100%;
+}
+
+.card-text {
+    transform: rotate(-45deg);
+}
+
+.card-image {
+    opacity: 0.7;
+}
+
+.burger {
+    opacity: 0;
+}
+
+.burger:hover {
+    cursor: pointer;
+}
+
+.burger:hover .card-image {
+    opacity: 1;
+}
+
+#burger-preview-img {
+    opacity: 0;
+}
+
+label {
+    color: black;
+}
+
+.form-card {
+    background-color: rgba(171,104,40, 0.7);
+}
