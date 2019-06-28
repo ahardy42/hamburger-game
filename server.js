@@ -15,6 +15,9 @@ var app = express();
 // Sets an initial port. heroku uses the process.env.PORT option
 var PORT = process.env.PORT || 8080;
 
+// Requiring our models for syncing
+var db = require("./models");
+
 // loads static files to style and handle JS functionality on the front end
 app.use(express.static("public"));
 
@@ -42,6 +45,8 @@ app.use(routes);
 // LISTENER
 // =============================================================================
 
-app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
