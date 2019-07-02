@@ -29,6 +29,7 @@ module.exports = function(app) {
                     }
                 }).then(function(game) {
                     awesomeObject = {
+                        userId: req.user.id,
                         burger: burgerObject,
                         game: game.dataValues
                     }
