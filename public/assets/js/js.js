@@ -33,19 +33,17 @@ $(document).ready(() => {
 
         // now, we run a put to change the isDevoured property
         let updatedBurger;
-        if (burgerEaten == 0) {
+        if (burgerEaten === "false") {
             updatedBurger = {
-                isDevoured: 1,
-                id: burgerId
+                isDevoured: true
             };
         } else {
             updatedBurger = {
-                isDevoured: 0,
-                id: burgerId
+                isDevoured: false
             };
         }
 
-        $.ajax("/update", {
+        $.ajax("/api/burger/" + burgerId, {
             method: "PUT",
             data: updatedBurger
         }).then(() => {
@@ -81,7 +79,6 @@ $(document).ready(() => {
             method: "POST",
             data: newBurger
         }).then((data) => {
-            console.log(data);
             location.reload();
         });
     });
