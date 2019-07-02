@@ -1,29 +1,19 @@
-// ================================================================
-// this will call the orm with burger related garbage
-// ================================================================
+/*
+* This table will hold burger types, each burger that's created is stored here.
+*/
 
-var orm = require("../config/orm");
-
-var burger = {
-    all: (callback) => {
-        orm.selectAll("burgers", (data) => {
-            callback(data);
-        });
-    },
-    update: (object, callback) => {
-        orm.updateOne(object, () => {
-            orm.selectAll("burgers", (data) => {
-                callback(data);
-            });
-        });
-    },
-    insert: (object, callback) => {
-        orm.insertOne("burgers", object, () => {
-            orm.selectAll("burgers", (data) => {
-                callback(data);
-            });
-        });
-    }
+module.exports = function(sequelize, DataTypes) {
+    var Burger = sequelize.define("Burger", {
+      name: DataTypes.TEXT,
+      isDevoured: DataTypes.BOOLEAN
+    });
+    Burger.associate = function(models) {
+      Burger.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
+    };
+    return Burger;
 }
 
-module.exports = burger;

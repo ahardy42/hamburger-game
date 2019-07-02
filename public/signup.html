@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Burgers! | Andy Hardy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/assets/js/js.js"></script>
+</head>
+
+<body>
+    <!-- sick burger video -->
+    <video autoplay muted loop id="burger-video">
+        <source src="https://media.giphy.com/media/qXIEjuFSbNY5O/giphy.mp4" type="video/mp4">
+    </video>
+    <div class="jumbotron-fluid my-4">
+            <div class="container text-white">
+                <div class="row">
+                    <h1 class="display-4">Make some Burgers!</h1>
+                    <hr class="my-4">
+                    <span><a id="login" href="/login">Already a User?</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!-- signup card -->
+                <div class="card col border-0">
+                    <div class="card-body">
+                        <h5 class="card-title text-center mb-4">Fill out all inputs to create an account</h5>
+                        <form class="sign-up">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password-check">Re-Enter Password</label>
+                                <input type="password" class="form-control" name="password-check" id="password-check" placeholder="Password">
+                            </div>
+                            <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                                <span class="sr-only">Error:</span> <span class="msg"></span>
+                            </div>
+                            <div class="form-group d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success">Create Account!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
