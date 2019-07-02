@@ -4,9 +4,16 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Game = sequelize.define("Game", {
-      user: DataTypes.TEXT,
+      userId: DataTypes.TEXT,
       burger: DataTypes.TEXT,
       numEaten: DataTypes.INTEGER
     });
+    Game.associate = function(models) {
+      Game.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
+    };
     return Game;
 }

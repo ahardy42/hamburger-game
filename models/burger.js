@@ -7,6 +7,13 @@ module.exports = function(sequelize, DataTypes) {
       name: DataTypes.TEXT,
       isDevoured: DataTypes.BOOLEAN
     });
+    Burger.associate = function(models) {
+      Burger.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
+    };
     return Burger;
 }
 

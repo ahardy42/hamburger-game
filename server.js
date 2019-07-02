@@ -3,7 +3,11 @@
 // ==============================================================================
 
 var express = require("express");
-
+var session = require("express-session");
+// Requiring passport as we've configured it
+var passport = require("./config/passport");
+// requiring models so we can sync
+var db = require("./models");
 // ==============================================================================
 // EXPRESS CONFIGURATION
 // This sets up the basic properties for our express server
@@ -20,6 +24,10 @@ var db = require("./models");
 
 // loads static files to style and handle JS functionality on the front end
 app.use(express.static("public"));
+// We need to use sessions to keep track of our user's login status
+app.use(session({ secret: "ninja", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -35,10 +43,9 @@ app.set("view engine", "handlebars");
 // ROUTER
 // ================================================================================
 
-// Import routes and give the server access to them.
-var routes = require("./controllers/burgers_controller");
-
-app.use(routes);
+// Requiring our routes
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
 
 // =============================================================================
@@ -47,6 +54,6 @@ app.use(routes);
 
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });
 });
