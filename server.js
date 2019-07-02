@@ -44,8 +44,8 @@ app.set("view engine", "handlebars");
 // ================================================================================
 
 // Requiring our routes
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
+require("./routes/htmlRoutes.js")(app);
+require("./routes/apiRoutes.js")(app);
 
 
 // =============================================================================
