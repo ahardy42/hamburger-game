@@ -20,6 +20,7 @@ module.exports = function (app) {
             password: req.body.password
         })
             .then(function () {
+                console.log("switch to login");
                 res.redirect(307, "/api/login");
             })
             .catch(function (err) {
