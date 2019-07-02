@@ -4,7 +4,6 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Game = sequelize.define("Game", {
-      userId: DataTypes.TEXT,
       burger: DataTypes.TEXT,
       numEaten: DataTypes.INTEGER
     });

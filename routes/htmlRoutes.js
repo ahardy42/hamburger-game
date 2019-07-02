@@ -32,6 +32,7 @@ module.exports = function(app) {
                         burger: burgerObject,
                         game: game.dataValues
                     }
+                    res.render("index", awesomeObject);
                 }).catch(function(err) {
                     console.log(err);
                 });
