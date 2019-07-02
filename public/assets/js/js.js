@@ -53,9 +53,11 @@ $(document).ready(() => {
         });
     });
 
-    $("#burger").on("click", (event) => {
+    $("form").on("submit", (event) => {
         event.preventDefault();
 
+        // construct the burger
+        let UserId = $("#burger").attr("data-id");
         let name = $("#burger-name").val().trim();
 
         // validation
@@ -70,14 +72,16 @@ $(document).ready(() => {
         }
 
         let newBurger = {
-            burger_name: name,
-            isDevoured: 0
+            name: name,
+            isDevoured: false,
+            UserId: UserId
         };
 
-        $.ajax("/burger", {
+        $.ajax("/api/burger", {
             method: "POST",
             data: newBurger
-        }).then(() => {
+        }).then((data) => {
+            console.log(data);
             location.reload();
         });
     });

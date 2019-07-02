@@ -36,16 +36,19 @@ module.exports = function (app) {
 
     // burger routes for CRUD actions related to burgers
     app.post("/api/burger", function (req, res) {
+        console.log("apiRoutes 39 req.body is",req.body);
         if (!req.user) {
             res.redirect("/login");
         } else {
             db.Burger.create({
                 name: req.body.name,
-                isDevoured: req.body.isDevoured
+                isDevoured: req.body.isDevoured,
+                UserId: req.body.UserId
             }).then(function (burger) {
                 console.log(burger);
                 res.json(burger);
             }).catch(function (err) {
+                console.log("apiRoutes 51:",err);
                 res.status(401).json(err);
             });
         }

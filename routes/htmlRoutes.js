@@ -19,20 +19,23 @@ module.exports = function(app) {
             // get an object to render w/ handlebars
             db.Burger.findAll({
                 where: {
-                    userId: req.user.id
+                    UserId: req.user.id
                 }
-            }).then(function(burger) {
-                var burgerObject = burger.dataValues;
+            }).then(function(burgers) {
+                console.log("htmlRoutes 25 burger is",burgers);
+                var burgerObject = burgers;
                 db.Game.findAll({
                     where: {
-                        userId: req.user.id
+                        UserId: req.user.id
                     }
-                }).then(function(game) {
+                }).then(function(games) {
+                    console.log("htmlRoutes 32 game is",games);
                     awesomeObject = {
-                        userId: req.user.id,
-                        burger: burgerObject,
-                        game: game.dataValues
-                    }
+                        UserId: req.user.id,
+                        burgers: burgerObject,
+                        games: games
+                    };
+                    console.log("htmlRoutes.js line 36 - awesome object is:",awesomeObject);
                     res.render("index", awesomeObject);
                 }).catch(function(err) {
                     console.log(err);
