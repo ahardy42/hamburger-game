@@ -47,6 +47,7 @@ $(document).ready(() => {
             method: "PUT",
             data: updatedBurger
         }).then(() => {
+            // now I have to run the game instead of reload location!
             location.reload();
         });
     });
