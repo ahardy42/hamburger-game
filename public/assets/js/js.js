@@ -33,29 +33,30 @@ $(document).ready(() => {
 
         // now, we run a put to change the isDevoured property
         let updatedBurger;
-        if (burgerEaten == 0) {
+        if (burgerEaten === "false") {
             updatedBurger = {
-                isDevoured: 1,
-                id: burgerId
+                isDevoured: true
             };
         } else {
             updatedBurger = {
-                isDevoured: 0,
-                id: burgerId
+                isDevoured: false
             };
         }
 
-        $.ajax("/update", {
+        $.ajax("/api/burger/" + burgerId, {
             method: "PUT",
             data: updatedBurger
         }).then(() => {
+            // now I have to run the game instead of reload location!
             location.reload();
         });
     });
 
-    $("#burger").on("click", (event) => {
+    $("form").on("submit", (event) => {
         event.preventDefault();
 
+        // construct the burger
+        let UserId = $("#burger").attr("data-id");
         let name = $("#burger-name").val().trim();
 
         // validation
@@ -70,14 +71,15 @@ $(document).ready(() => {
         }
 
         let newBurger = {
-            burger_name: name,
-            isDevoured: 0
+            name: name,
+            isDevoured: false,
+            UserId: UserId
         };
 
-        $.ajax("/burger", {
+        $.ajax("/api/burger", {
             method: "POST",
             data: newBurger
-        }).then(() => {
+        }).then((data) => {
             location.reload();
         });
     });
