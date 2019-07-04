@@ -1,3 +1,7 @@
+body {
+    background-color: #223;
+}
+
 #burger-video {
     z-index: -5;
     position: fixed;
