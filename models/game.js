@@ -13,6 +13,11 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: false
         }
       });
+      Game.belongsTo(models.Burger, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
     };
     return Game;
 }

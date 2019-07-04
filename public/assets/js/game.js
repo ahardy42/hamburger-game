@@ -5,6 +5,7 @@ $(document).ready(() => {
     // this sets up the game.  it's an object used in the creation of the game object below.
     var config = {
         type: Phaser.AUTO,
+        parent: 'game',
         width: 800,
         height: 600,
         physics: {
@@ -153,7 +154,7 @@ $(document).ready(() => {
             url: "/api/game/" + id,
             data: updatedGame
         }).then((data) => {
-            console.log(data);
+            location.assign("/");
         }).catch((err) => {
             console.log(err);
         });

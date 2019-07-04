@@ -31,6 +31,7 @@ module.exports = function(app) {
                 }).then(function(games) {
                     console.log("htmlRoutes 32 game is",games);
                     awesomeObject = {
+                        userName: req.user.name,
                         UserId: req.user.id,
                         burgers: burgerObject,
                         games: games

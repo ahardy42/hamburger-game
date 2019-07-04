@@ -37,7 +37,8 @@ $(document).ready(() => {
         let newGame = {
             burger: name,
             numEaten: 0,
-            UserId: UserId
+            UserId: UserId,
+            BurgerId: burgerId
         }
         let updatedBurger;
         if (burgerEaten === "false") {

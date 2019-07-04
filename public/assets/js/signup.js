@@ -3,21 +3,24 @@ $(document).ready(() => {
     // get values for login / user create
     $(".sign-up").on("submit", (event) => {
         event.preventDefault();
+        const name = $("#name").val().trim();
         const email = $("#email").val().trim();
         const password = $("#password").val().trim();
 
-        if (!email || !password) {
+        if (!name || !email || !password) {
             return;
         }
 
-        submitForm(email, password);
+        submitForm(name, email, password);
+        $("#name").val("");
         $("#email").val("");
         $("#password").val("");
     });
 
 
-    const submitForm = (email, password) => {
+    const submitForm = (name, email, password) => {
         $.post("/api/signup", {
+            name: name,
             email: email,
             password: password
         }).then((user) => {
