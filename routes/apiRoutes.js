@@ -7,7 +7,7 @@ module.exports = function (app) {
     // If the user has valid login credentials, send them to the members page.
     // Otherwise the user will be sent an error
     app.post("/api/login", passport.authenticate("local"), function (req, res) {
-        console.log("req body", req.body);
+        console.log("req body", req.user);
         res.json(req.user);
     });
 
@@ -104,4 +104,20 @@ module.exports = function (app) {
             });
         }
     });
+
+    app.put("/api/game/:id", function (req, res) {
+        if (!req.user) {
+            res.redirect("/login");
+        } else {
+            db.Game.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            }).then(function(game) {
+                res.json(game);
+            }).catch(function(err) {
+                console.log(err);
+            });
+        }
+    }); 
 };

@@ -21,7 +21,7 @@ $(document).ready(() => {
             email: email,
             password: password
         }).then((user) => {
-            window.location.replace("/");
+            window.location.assign("/?user="+user.id);
         }).catch((error) => {
             console.log(error);
         });

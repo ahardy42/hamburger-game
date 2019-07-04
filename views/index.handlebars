@@ -21,7 +21,7 @@
                 <ul class="list-group">
                     {{#each burgers}}
                     {{#unless isDevoured}}
-                    <li class="list-group-item bg-transparent burger border-0" data-id="{{id}}" data-eaten="{{isDevoured}}">
+                    <li class="list-group-item bg-transparent burger border-0" data-name="{{name}}" data-id="{{id}}" data-eaten="{{isDevoured}}">
                         <div class="card bg-transparent border-0">
                             <img class="card-image" src="/assets/img/output-onlinepngtools.png">
                             <div class="card-img-overlay d-flex justify-content-center align-items-center">
@@ -71,7 +71,7 @@
                 <ul class="list-group">
                     {{#each burgers}}
                     {{#if isDevoured}}
-                    <li class="list-group-item bg-transparent burger border-0" data-id="{{id}}" data-eaten="{{isDevoured}}">
+                    <li class="list-group-item bg-transparent burger border-0" data-name="{{name}}" data-id="{{id}}" data-eaten="{{isDevoured}}">
                         <div class="card bg-transparent border-0">
                             <img class="card-image" src="/assets/img/output-onlinepngtools.png">
                             <div class="card-img-overlay d-flex justify-content-center align-items-center">
