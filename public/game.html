@@ -17,19 +17,18 @@
     <div class="jumbotron-fluid my-4">
         <div class="container text-white">
             <div class="row">
-                <h1 class="display-4">Make some Burgers!</h1>
+                <h1 class="display-4">Eat some Burgers <span id="display-name"></span>!</h1>
                 <hr class="my-4">
                 <div class="col-md d-flex flex-column align-items-end">
-                    <p>Click on a <span class="text-success">conceived</span> Burger to <span
-                            class="text-danger">EAT</span> it!</p>
-                    <p>Click on an <span class="text-danger">eaten</span> Burger to <span
-                            class="text-success">MAKE</span> it!</p>
-                    <span><a id="signup" href="/logout">Sign Out</a></span>
+                    <p>Use the LEFT / RIGHT arrow keys to run</p>
+                    <p>Use UP arrow key to jump!</p>
+                    <button type="button" class="btn btn-link" id="quit">Quit Game</button>
+                    <a id="signup" href="/logout">Sign Out</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container" id="game">
+    <div class="container d-flex justify-content-center" id="game">
         
     </div>
     <div class="modal" tabindex="-1" role="dialog">
@@ -45,7 +44,7 @@
                     <p>You Ate <span id="numBurgs"></span> burgers!</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keep Playing Forever</button>
+                    <button type="button" class="btn btn-secondary" id="play" data-dismiss="modal">Keep Playing Forever</button>
                     <button type="button" class="btn btn-primary" id="home">Go Back Home</button>
                 </div>
             </div>

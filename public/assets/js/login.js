@@ -21,7 +21,8 @@ $(document).ready(() => {
             email: email,
             password: password
         }).then((user) => {
-            window.location.assign("/?user="+user.id);
+            window.localStorage.setItem("userId", user.id);
+            window.location.assign("/");
         }).catch((error) => {
             console.log(error);
         });

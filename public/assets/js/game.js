@@ -1,7 +1,5 @@
 $(document).ready(() => {
 
-    
-
     // this sets up the game.  it's an object used in the creation of the game object below.
     var config = {
         type: Phaser.AUTO,
@@ -23,6 +21,7 @@ $(document).ready(() => {
     };
 
     var game = new Phaser.Game(config); // creates an instance of a game object using the config object
+    console.log(game.scene.resume());
 
     // globals
     var platforms, player, cursors, burgers;
@@ -119,6 +118,11 @@ $(document).ready(() => {
                 $(".modal").css("display", "block");
             }
         }
+
+        $("#play").on("click", () => {
+            $(".modal").fadeOut(500);
+            this.physics.resume();
+        });
     }
 
     function update() {
@@ -138,11 +142,31 @@ $(document).ready(() => {
         }
     }
 
+    // ==================================================================================
+    // listeners
+    // ==================================================================================
+
     $("#home").on("click", () => {
         var burgerId = parseInt(window.localStorage.getItem("burgerId"));
         $(".modal").fadeOut(500);
         updateDatabase(score, burgerId);
     });
+
+    $("#quit").on("click", () => {
+        let gameId = parseInt(window.localStorage.getItem("gameId"));
+        let burgerId = parseInt(window.localStorage.getItem("burgerId"));
+        if (score === 0) {
+            // dete game with current id
+            deleteGame(gameId, burgerId);
+        } else {
+            // update the Game db 
+            updateDatabase(score, gameId);
+        }
+    });
+
+    // ==================================================================================
+    // funky funcs
+    // ==================================================================================
 
     // update database with score
     const updateDatabase = (score, id) => {
@@ -159,4 +183,35 @@ $(document).ready(() => {
             console.log(err);
         });
     }
+
+    const deleteGame = (gameId, burgerId) => {
+        $.ajax({
+            method: "DELETE",
+            url: "/api/game/" + gameId
+        }).then(() => {
+            updateHamburger(burgerId);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const updateHamburger = (burgerId) => {
+        $.ajax({
+            method: "PUT",
+            url: "/api/burger/" + burgerId,
+            data: {isDevoured: false}
+        }).then(() => {
+            location.assign("/");
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const displayUser = () => {
+        let userName = localStorage.getItem("userName");
+        $("#display-name").text(userName);
+    }
+
+    displayUser();
+
 });

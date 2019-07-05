@@ -2,6 +2,13 @@ body {
     background-color: #223;
 }
 
+#game {
+    min-width: 800px;
+}
+
+#signup {
+    padding: .375rem .75rem;
+}
 #burger-video {
     z-index: -5;
     position: fixed;
@@ -41,4 +48,9 @@ label {
 
 .form-card {
     background-color: rgba(171,104,40, 0.7);
+}
+
+.table-container {
+    background-color: rgba(171,104,40, 0.7);
+    border-radius: 0.5em;
 }

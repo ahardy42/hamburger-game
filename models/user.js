@@ -31,8 +31,6 @@ module.exports = function (sequelize, DataTypes) {
     User.hasMany(models.Burger, {
       onDelete: "cascade"
     });
-  };
-  User.associate = function (models) {
     User.hasMany(models.Game, {
       onDelete: "cascade"
     });

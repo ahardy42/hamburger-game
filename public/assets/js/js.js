@@ -28,7 +28,7 @@ $(document).ready(() => {
 
     $("body").on("click", ".burger", (event) => {
         let UserId = $("#burger").data("id");
-        let burgerId = event.currentTarget.getAttribute("data-id");
+        let burgerId = parseInt(event.currentTarget.getAttribute("data-id"));
         let burgerEaten = event.currentTarget.getAttribute("data-eaten");
         let name = event.currentTarget.getAttribute("data-name");
         $(`[data-id=${burgerId}]`).animate({opacity: "0"}, 1000);
@@ -45,6 +45,7 @@ $(document).ready(() => {
             updatedBurger = {
                 isDevoured: true
             }
+            console.log("burgerId", burgerId, "updated burger", updatedBurger, "newGame", newGame);
             gameTime(burgerId, updatedBurger, newGame);
         } else {
             updatedBurger = {
@@ -93,13 +94,16 @@ $(document).ready(() => {
     });
 
 
-    // functions
+    // functions 
+    localStorage.setItem("userName", $("#name-display").attr("data-name"));
 
     const gameTime = (burgerId, updatedBurger, newGame) => {
         $.ajax("/api/game", {
             method: "POST",
             data: newGame
-        }).then(()=> {
+        }).then((data)=> {
+            console.log(data);
+            window.localStorage.setItem("gameId", data.id);
             updateBurger(burgerId, updatedBurger, newGame);
         }).catch((err) => {
             console.log(err);
