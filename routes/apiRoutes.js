@@ -7,7 +7,6 @@ module.exports = function (app) {
     // If the user has valid login credentials, send them to the members page.
     // Otherwise the user will be sent an error
     app.post("/api/login", passport.authenticate("local"), function (req, res) {
-        console.log("req body", req.body);
         res.json(req.user);
     });
 
@@ -16,11 +15,11 @@ module.exports = function (app) {
     // otherwise send back an error
     app.post("/api/signup", function (req, res) {
         db.User.create({
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password
         })
             .then(function () {
-                console.log("switch to login");
                 res.redirect(307, "/api/login");
             })
             .catch(function (err) {
@@ -36,7 +35,6 @@ module.exports = function (app) {
 
     // burger routes for CRUD actions related to burgers
     app.post("/api/burger", function (req, res) {
-        console.log("apiRoutes 39 req.body is",req.body);
         if (!req.user) {
             res.redirect("/login");
         } else {
@@ -45,10 +43,8 @@ module.exports = function (app) {
                 isDevoured: req.body.isDevoured,
                 UserId: req.body.UserId
             }).then(function (burger) {
-                console.log(burger);
                 res.json(burger);
             }).catch(function (err) {
-                console.log("apiRoutes 51:",err);
                 res.status(401).json(err);
             });
         }
@@ -104,4 +100,36 @@ module.exports = function (app) {
             });
         }
     });
+
+    app.put("/api/game/:id", function (req, res) {
+        if (!req.user) {
+            res.redirect("/login");
+        } else {
+            db.Game.update(req.body, {
+                where: {
+                    id: req.params.id
+                }
+            }).then(function(game) {
+                res.json(game);
+            }).catch(function(err) {
+                console.log(err);
+            });
+        }
+    });
+    
+    app.delete("/api/game/:id", function (req, res) {
+        if (!req.user) {
+            res.redirect("/login");
+        } else {
+            db.Game.destroy({
+                where: {
+                    id: req.params.id
+                }
+            }).then(function(game) {
+                res.json(game);
+            }).catch(function(err) {
+                console.log(err);
+            });
+        }
+    })
 };

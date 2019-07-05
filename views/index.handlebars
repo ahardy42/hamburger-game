@@ -1,11 +1,13 @@
 <div class="jumbotron-fluid my-4">
     <div class="container text-white">
         <div class="row">
-            <h1 class="display-4">Make some Burgers!</h1>
+            <h1 class="display-4" id="name-display" data-name="{{User.name}}">Make some Burgers {{User.name}}!</h1>
             <hr class="my-4">
             <div class="col-md d-flex flex-column align-items-end">
-                <p>Click on a <span class="text-success">conceived</span> Burger to <span class="text-danger">EAT</span> it!</p>
-                <p>Click on an <span class="text-danger">eaten</span> Burger to <span class="text-success">MAKE</span> it!</p>
+                <p>Click on a <span class="text-success">conceived</span> Burger to <span
+                        class="text-danger">PLAY</span>a game...</p>
+                <p>Click on an <span class="text-danger">eaten</span> Burger to <span class="text-success">MAKE</span>
+                    it!</p>
                 <span><a id="signup" href="/logout">Sign Out</a></span>
             </div>
         </div>
@@ -19,14 +21,15 @@
                 <h5 class="text-muted">but have not eaten</h5>
                 <!-- list displaying un-eaten burgers-->
                 <ul class="list-group">
-                    {{#each burgers}}
-                    {{#unless isDevoured}}
-                    <li class="list-group-item bg-transparent burger border-0" data-id="{{id}}" data-eaten="{{isDevoured}}">
+                    {{#each Burgers}}
+                    {{#unless this.isDevoured}}
+                    <li class="list-group-item bg-transparent burger border-0" data-name="{{this.name}}" data-id="{{this.id}}"
+                        data-eaten="{{this.isDevoured}}">
                         <div class="card bg-transparent border-0">
                             <img class="card-image" src="/assets/img/output-onlinepngtools.png">
                             <div class="card-img-overlay d-flex justify-content-center align-items-center">
                                 <h3 class="card-text">
-                                    {{name}}
+                                    {{this.name}}
                                 </h3>
                             </div>
                         </div>
@@ -48,7 +51,8 @@
                                     <small id='length' class='form-text text-danger'></small>
                                 </div>
                                 <div class="form-group d-flex justify-content-center border-0">
-                                    <button type="submit" class="btn btn-success"  data-id="{{UserId}}" id="burger">Make That Burger!</button>
+                                    <button type="submit" class="btn btn-success" data-id="{{User.id}}" id="burger">Make
+                                        That Burger!</button>
                                 </div>
                             </form>
                         </div>
@@ -69,13 +73,14 @@
             <div class="card-body">
                 <h2>Eaten Burgers</h2>
                 <ul class="list-group">
-                    {{#each burgers}}
+                    {{#each Burgers}}
                     {{#if isDevoured}}
-                    <li class="list-group-item bg-transparent burger border-0" data-id="{{id}}" data-eaten="{{isDevoured}}">
+                    <li class="list-group-item bg-transparent burger border-0" data-name="{{this.name}}" data-id="{{this.id}}"
+                        data-eaten="{{this.isDevoured}}">
                         <div class="card bg-transparent border-0">
                             <img class="card-image" src="/assets/img/output-onlinepngtools.png">
                             <div class="card-img-overlay d-flex justify-content-center align-items-center">
-                                <h3 class="card-text">{{name}}</h3>
+                                <h3 class="card-text">{{this.name}}</h3>
                             </div>
                         </div>
                     </li>
@@ -83,6 +88,28 @@
                     {{/each}}
                 </ul>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container table-container">
+            <table class="table m-2">
+                <thead>
+                    <tr>
+                        <th scope="col">Game #</th>
+                        <th scope="col">Burger Name</th>
+                        <th scope="col">Amount Eaten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each Games}}
+                    <tr>
+                        <th scope="row">{{number}}</th>
+                        <td>{{burger}}</td>
+                        <td>{{numEaten}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
