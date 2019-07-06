@@ -1,5 +1,6 @@
 $(document).ready(() => {
 
+    localStorage.clear();
     // get values for login / user create
     $(".login").on("submit", (event) => {
         event.preventDefault();
