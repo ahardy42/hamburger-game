@@ -37,4 +37,4 @@ This web app is a full-stack app which uses the MVC design strategy.  The server
 
 ## Enjoy! 
 
-The app is hosted by heroku at: insert link!, and here at [GitHub](https://github.com/ahardy42/hamburger-game) as well!
+The app is hosted by heroku at: https://burger-game-ahardy42.herokuapp.com/!, and here at [GitHub](https://github.com/ahardy42/hamburger-game) as well!
