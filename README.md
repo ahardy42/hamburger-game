@@ -1,6 +1,5 @@
 # hamburger
 
-this full-stack web app satisfied the requirements for DU Coding BootCamp week 15... 
 
 ## What the App is... 
 
@@ -26,7 +25,7 @@ This web app is a full-stack app which uses the MVC design strategy.  The server
 
 - [bootstrap](https://getbootstrap.com/)
 - [jQuery](https://jquery.com/)
-- [phaser]()
+- [phaser](https://phaser.io/)
 
 ### Languages: 
 
